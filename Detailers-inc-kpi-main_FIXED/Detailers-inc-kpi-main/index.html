@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en-ZA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Detailers Inc. | KPI &amp; CRM Dashboard</title>
+<meta name="theme-color" content="#071018">
+<link rel="icon" href="assets/detailers-inc-logo.jpg">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<div id="loginView" class="login">
+  <div class="login-card">
+    <img class="logo" src="assets/detailers-inc-logo.jpg" alt="Detailers Inc.">
+    <h1 class="login-title">Detailers Inc.</h1>
+    <p class="login-sub">KPI &amp; Business Intelligence Dashboard</p>
+    <form id="loginForm">
+      <div class="field">
+        <label for="password">Password</label>
+        <input id="password" type="password" autocomplete="current-password" placeholder="Enter your password" required>
+      </div>
+      <button class="btn primary block" type="submit">Sign In</button>
+      <div id="loginError" class="error"></div>
+    </form>
+    <div class="auth-status"><span class="status-dot"></span><span id="authStatus">Starting up…</span></div>
+    <div class="hint">Passwords are hardcoded in <code>js/config.js</code> &mdash; never in the database. This dashboard reads and writes the same Supabase tables as the Detailers Compass CRM, so anything you add or change here shows up there, and anything captured in the CRM shows up here.</div>
+  </div>
+</div>
+
+<div id="appView" class="app hidden">
+  <aside class="sidebar" id="sidebar">
+    <div class="brand"><img src="assets/detailers-inc-logo.jpg" alt=""><div><b>DETAILERS INC.</b><span>Mobile Carwash &amp; Detailing</span></div></div>
+    <div class="nav-title">Workspace</div>
+    <div class="nav" id="nav"></div>
+    <div class="sidefoot">
+      <div class="conn"><i class="dot" id="connDot"></i><span id="connText">Embedded snapshot</span></div>
+      <div style="margin-top:8px"><b id="userName">—</b><br><span id="userRole" class="muted">—</span></div>
+      <div style="margin-top:10px;font-size:10px;color:#6f7f8c" id="srcNote"></div>
+    </div>
+  </aside>
+  <main class="main">
+    <header class="topbar">
+      <button class="btn" id="menuBtn" aria-label="Menu">☰</button>
+      <div class="page-head"><h1 id="pageTitle">Executive Dashboard</h1><p id="pageSub"></p></div>
+      <div style="margin-left:auto;display:flex;gap:7px">
+        <button class="btn" id="refreshBtn" title="Pull the latest rows from the shared CRM database">Refresh</button>
+        <button class="btn" id="printBtn">Print</button>
+        <button class="btn" id="logoutBtn">Logout</button>
+      </div>
+    </header>
+    <section class="content" id="content"></section>
+  </main>
+</div>
+
+<div id="tip" class="tip hidden"></div>
+
+<!-- Order matters. config: credentials · data: first-run seed · schema: what a record is
+     · store: reads and writes the shared CRM database · forms: the record editor · app: the screens -->
+<script src="js/config.js"></script>
+<script src="js/data.js"></script>
+<script src="js/schema.js"></script>
+<script src="js/store.js"></script>
+<script src="js/forms.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
